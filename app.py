@@ -46,7 +46,7 @@ while True:
             if hist.empty: continue
             ltp = round(float(hist['Close'].iloc[-1]), 2)
             
-            if ltp >= (r5_val * 0.998):
+            if ltp >= (r5_val * 0.95):
                 status = "🚨 R5 BREAKOUT" if ltp >= r5_val else "Near R5"
                 hits.append({"Stock": s.replace(".NS", ""), "LTP": ltp, "R5": r5_val, "Status": status})
                 
@@ -62,3 +62,4 @@ while True:
     
     time.sleep(60)
     st.rerun()
+
