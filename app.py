@@ -30,8 +30,7 @@ while True:
     for s in STOCKS:
         r5_val = get_levels(s)
         tick = yf.Ticker(s)
-        ltp = tick.fast_info['last_price']
-        
+ltp = float(tick.fast_info['last_price'])        
         status = "🚨 ALERT: AT R5" if ltp >= (r5_val * 0.999) else "Below R5"
         results.append({"Stock": s, "LTP": round(ltp, 2), "R5 Level": round(r5_val, 2), "Status": status})
     
@@ -40,4 +39,5 @@ while True:
         st.table(df.style.map(lambda x: 'background-color: #ff4b4b; color: white' if x == "🚨 ALERT: AT R5" else '', subset=['Status']))
     
     time.sleep(30)
+
     st.rerun()
